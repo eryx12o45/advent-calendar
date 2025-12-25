@@ -243,6 +243,24 @@ document.addEventListener('DOMContentLoaded', function() {
             audioSource.src = `audio/${currentYear}/day${dayNumber}.mp3`;
             audioPlayer.load();
             
+            // Load and display image if it exists (using same naming as audio files)
+            const storyImageContainer = document.getElementById('storyImageContainer');
+            const storyImage = document.getElementById('storyImage');
+            const imagePath = `images/${currentYear}/day${dayNumber}.png`;
+            
+            // Create a new image to test if it exists
+            const testImage = new Image();
+            testImage.onload = function() {
+                // Image exists, show it
+                storyImage.src = imagePath;
+                storyImageContainer.style.display = 'block';
+            };
+            testImage.onerror = function() {
+                // Image doesn't exist, hide the container
+                storyImageContainer.style.display = 'none';
+            };
+            testImage.src = imagePath;
+            
             // Show overlay
             overlay.classList.add('active');
             
