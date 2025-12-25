@@ -1,0 +1,509 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Georgia', serif;
+    background: linear-gradient(135deg, #1a0f2e 0%, #2d1b4e 50%, #1a0f2e 100%);
+    min-height: 100vh;
+    color: #fff;
+    overflow-x: hidden;
+    position: relative;
+    transition: background 0.5s ease;
+}
+
+/* Year-specific themes */
+body[data-year="2025"] {
+    background: linear-gradient(135deg, #1a0f2e 0%, #2d1b4e 50%, #1a0f2e 100%);
+}
+
+body[data-year="2026"] {
+    background: linear-gradient(135deg, #0f1e2e 0%, #1b3d4e 50%, #0f1e2e 100%);
+}
+
+body[data-year="2027"] {
+    background: linear-gradient(135deg, #2e0f1a 0%, #4e1b2d 50%, #2e0f1a 100%);
+}
+
+body[data-year="2028"] {
+    background: linear-gradient(135deg, #0f2e1a 0%, #1b4e2d 50%, #0f2e1a 100%);
+}
+
+body[data-year="2029"] {
+    background: linear-gradient(135deg, #2e1a0f 0%, #4e2d1b 50%, #2e1a0f 100%);
+}
+
+body[data-year="2030"] {
+    background: linear-gradient(135deg, #1a0f2e 0%, #3d1b4e 50%, #1a0f2e 100%);
+}
+
+/* Password Protection Screen */
+.password-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, #1a0f2e 0%, #2d1b4e 50%, #1a0f2e 100%);
+    z-index: 10000;
+}
+
+.password-container {
+    background: linear-gradient(145deg, #2d1b4e, #1a0f2e);
+    padding: 50px 40px;
+    border-radius: 20px;
+    box-shadow: 0 0 50px rgba(255, 215, 0, 0.3);
+    border: 2px solid #ffd700;
+    text-align: center;
+    max-width: 450px;
+    width: 90%;
+}
+
+.password-title {
+    font-size: 2.5em;
+    color: #ffd700;
+    margin-bottom: 15px;
+    text-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
+}
+
+.password-subtitle {
+    font-size: 1.2em;
+    color: #90ee90;
+    margin-bottom: 30px;
+}
+
+.password-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.password-input {
+    padding: 15px 20px;
+    font-size: 1.1em;
+    border: 2px solid #ffd700;
+    border-radius: 10px;
+    background: rgba(255, 255, 255, 0.1);
+    color: #fff;
+    outline: none;
+    transition: all 0.3s ease;
+    font-family: 'Georgia', serif;
+}
+
+.password-input::placeholder {
+    color: rgba(255, 255, 255, 0.5);
+}
+
+.password-input:focus {
+    background: rgba(255, 255, 255, 0.15);
+    box-shadow: 0 0 20px rgba(255, 215, 0, 0.4);
+    border-color: #90ee90;
+}
+
+.password-submit {
+    padding: 15px 30px;
+    font-size: 1.2em;
+    font-weight: bold;
+    background: linear-gradient(145deg, #006400, #228b22);
+    color: #fff;
+    border: 2px solid #90ee90;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-family: 'Georgia', serif;
+}
+
+.password-submit:hover {
+    background: linear-gradient(145deg, #228b22, #32cd32);
+    box-shadow: 0 0 20px rgba(144, 238, 144, 0.6);
+    transform: translateY(-2px);
+}
+
+.password-submit:active {
+    transform: translateY(0);
+}
+
+.password-error {
+    color: #ff6b6b;
+    font-size: 1em;
+    margin-top: 15px;
+    animation: shake 0.5s ease;
+}
+
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-10px); }
+    75% { transform: translateX(10px); }
+}
+
+.calendar-content {
+    position: relative;
+}
+
+/* Snowflakes Animation */
+.snow-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 1;
+    overflow: hidden;
+}
+
+@keyframes snowfall {
+    0% {
+        transform: translateY(-10vh) translateX(0);
+        opacity: 0;
+    }
+    10% {
+        opacity: 1;
+    }
+    90% {
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(100vh) translateX(100px);
+        opacity: 0;
+    }
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 40px 20px;
+    position: relative;
+    z-index: 2;
+}
+
+.title {
+    text-align: center;
+    font-size: 3.5em;
+    margin-bottom: 30px;
+    color: #ffd700;
+    text-shadow: 0 0 20px rgba(255, 215, 0, 0.5),
+                 0 0 40px rgba(255, 215, 0, 0.3);
+    font-weight: bold;
+    letter-spacing: 3px;
+}
+
+/* Year Selector Styles */
+.year-selector-container {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 20px;
+}
+
+.year-label {
+    display: none;
+}
+
+.year-selector {
+    padding: 5px 10px;
+    font-size: 0.85em;
+    background: rgba(0, 0, 0, 0.3);
+    color: rgba(255, 255, 255, 0.7);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 4px;
+    cursor: pointer;
+    outline: none;
+    font-family: 'Georgia', serif;
+    transition: all 0.3s ease;
+}
+
+.year-selector:hover {
+    background: rgba(0, 0, 0, 0.5);
+    color: rgba(255, 255, 255, 0.9);
+    border-color: rgba(255, 255, 255, 0.3);
+}
+
+.year-selector:focus {
+    border-color: rgba(255, 255, 255, 0.4);
+}
+
+.year-selector option {
+    background: #1a0f2e;
+    color: #fff;
+}
+
+.calendar-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 20px;
+    padding: 20px;
+}
+
+.door {
+    position: relative;
+    aspect-ratio: 1;
+    background: linear-gradient(145deg, #8b0000, #a52a2a);
+    border-radius: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2.5em;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5),
+                inset 0 2px 4px rgba(255, 255, 255, 0.2);
+    border: 3px solid #ffd700;
+}
+
+.door:hover {
+    transform: translateY(-5px) scale(1.05);
+    box-shadow: 0 12px 30px rgba(255, 215, 0, 0.4),
+                inset 0 2px 4px rgba(255, 255, 255, 0.3);
+}
+
+/* Unlocked door styling - default */
+.door.unlocked {
+    background: linear-gradient(145deg, #006400, #228b22);
+    border-color: #90ee90;
+    animation: glow 2s ease-in-out infinite;
+}
+
+/* Year-specific unlocked door colors */
+body[data-year="2025"] .door.unlocked {
+    background: linear-gradient(145deg, #4b0082, #8b008b);
+    border-color: #da70d6;
+}
+
+body[data-year="2026"] .door.unlocked {
+    background: linear-gradient(145deg, #006b8f, #0099cc);
+    border-color: #87ceeb;
+}
+
+body[data-year="2027"] .door.unlocked {
+    background: linear-gradient(145deg, #8b0000, #dc143c);
+    border-color: #ff69b4;
+}
+
+body[data-year="2028"] .door.unlocked {
+    background: linear-gradient(145deg, #006400, #228b22);
+    border-color: #90ee90;
+}
+
+body[data-year="2029"] .door.unlocked {
+    background: linear-gradient(145deg, #8b4513, #cd853f);
+    border-color: #daa520;
+}
+
+body[data-year="2030"] .door.unlocked {
+    background: linear-gradient(145deg, #191970, #4169e1);
+    border-color: #9370db;
+}
+
+@keyframes glow {
+    0%, 100% {
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5),
+                    0 0 10px rgba(144, 238, 144, 0.5),
+                    inset 0 2px 4px rgba(255, 255, 255, 0.2);
+    }
+    50% {
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5),
+                    0 0 20px rgba(144, 238, 144, 0.8),
+                    0 0 30px rgba(144, 238, 144, 0.6),
+                    inset 0 2px 4px rgba(255, 255, 255, 0.2);
+    }
+}
+
+/* Locked door styling */
+.door.locked {
+    background: linear-gradient(145deg, #4a4a4a, #696969);
+    border-color: #888;
+    cursor: not-allowed;
+    opacity: 0.7;
+}
+
+.door.locked:hover {
+    transform: none;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5),
+                inset 0 2px 4px rgba(255, 255, 255, 0.2);
+}
+
+.door-number {
+    color: #ffd700;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+    position: relative;
+    z-index: 2;
+}
+
+.door.locked .door-number {
+    color: #ccc;
+}
+
+/* Lock icon for locked doors */
+.door.locked::before {
+    content: "🔒";
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 0.5em;
+    opacity: 0.8;
+}
+
+/* Star icon for unlocked doors - default */
+.door.unlocked::before {
+    content: "⭐";
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 0.5em;
+    animation: twinkle 1.5s ease-in-out infinite;
+}
+
+/* Year-specific door icons */
+body[data-year="2025"] .door.unlocked::before {
+    content: "❄";
+}
+
+body[data-year="2026"] .door.unlocked::before {
+    content: "🎁";
+}
+
+body[data-year="2027"] .door.unlocked::before {
+    content: "🔔";
+}
+
+body[data-year="2028"] .door.unlocked::before {
+    content: "🎅";
+}
+
+body[data-year="2029"] .door.unlocked::before {
+    content: "🍪";
+}
+
+body[data-year="2030"] .door.unlocked::before {
+    content: "✨";
+}
+
+@keyframes twinkle {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.5; }
+}
+
+/* Overlay Modal */
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.9);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    animation: fadeIn 0.3s ease;
+}
+
+.overlay.active {
+    display: flex;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+.overlay-content {
+    background: linear-gradient(145deg, #2d1b4e, #1a0f2e);
+    padding: 40px;
+    border-radius: 20px;
+    max-width: 500px;
+    width: 90%;
+    position: relative;
+    box-shadow: 0 0 50px rgba(255, 215, 0, 0.3);
+    border: 2px solid #ffd700;
+    animation: slideIn 0.3s ease;
+}
+
+@keyframes slideIn {
+    from {
+        transform: translateY(-50px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+.close-btn {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    background: none;
+    border: none;
+    color: #ffd700;
+    font-size: 2em;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    line-height: 1;
+}
+
+.close-btn:hover {
+    color: #fff;
+    transform: rotate(90deg);
+}
+
+.door-title {
+    text-align: center;
+    color: #ffd700;
+    margin-bottom: 30px;
+    font-size: 2em;
+    text-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+}
+
+.audio-player {
+    margin: 30px 0;
+}
+
+.audio-player audio {
+    width: 100%;
+    outline: none;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+}
+
+.enjoy-message {
+    text-align: center;
+    font-size: 1.2em;
+    color: #90ee90;
+    margin-top: 20px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .title {
+        font-size: 2.5em;
+    }
+    
+    .calendar-grid {
+        grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+        gap: 15px;
+    }
+    
+    .door {
+        font-size: 2em;
+    }
+    
+    .overlay-content {
+        padding: 30px 20px;
+    }
+    
+    .door-title {
+        font-size: 1.5em;
+    }
+}

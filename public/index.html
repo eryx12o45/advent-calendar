@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Adventskalender</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Password Protection Screen -->
+    <div class="password-screen" id="passwordScreen">
+        <div class="password-container">
+            <h1 class="password-title">🎄 Adventskalender 🎄</h1>
+            <p class="password-subtitle">Bitte geben Sie das Passwort ein</p>
+            <form id="passwordForm" class="password-form">
+                <input 
+                    type="password" 
+                    id="passwordInput" 
+                    class="password-input" 
+                    placeholder="Passwort eingeben"
+                    autocomplete="off"
+                    required
+                />
+                <button type="submit" class="password-submit">Eintreten</button>
+            </form>
+            <p class="password-error" id="passwordError" style="display: none;">
+                ❌ Falsches Passwort. Bitte versuchen Sie es erneut.
+            </p>
+        </div>
+    </div>
+
+    <!-- Main Calendar Content (hidden until authenticated) -->
+    <div class="calendar-content" id="calendarContent" style="display: none;">
+        <div class="snow-container"></div>
+        
+        <div class="container">
+            <h1 class="title">Adventskalender</h1>
+            
+            <!-- Year Selector -->
+            <div class="year-selector-container" id="yearSelectorContainer">
+                <label class="year-label">Jahr wählen:</label>
+                <select class="year-selector" id="yearSelector">
+                    <option value="">Lädt...</option>
+                </select>
+            </div>
+            
+            <div class="calendar-grid">
+                <!-- Doors 1-24 will be generated here -->
+            </div>
+        </div>
+
+        <!-- Overlay Modal -->
+        <div class="overlay" id="overlay">
+            <div class="overlay-content">
+                <button class="close-btn" id="closeBtn">&times;</button>
+                <h2 class="door-title">Türchen <span id="doorNumber"></span></h2>
+                <div class="audio-player">
+                    <audio id="audioPlayer" controls>
+                        <source id="audioSource" type="audio/mpeg">
+                        Ihr Browser unterstützt das Audio-Element nicht.
+                    </audio>
+                </div>
+                <p class="enjoy-message">🎄 Viel Freude beim Hören! 🎄</p>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

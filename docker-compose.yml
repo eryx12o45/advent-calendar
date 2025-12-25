@@ -1,0 +1,15 @@
+version: '3.8'
+
+services:
+  advent-calendar:
+    build: .
+    container_name: advent-calendar
+    ports:
+      - "8088:8088"
+    volumes:
+      - ./audio:/app/public/audio
+    environment:
+      - NODE_ENV=production
+    env_file:
+      - .env
+    restart: unless-stopped
